@@ -54,6 +54,12 @@
   (vagrant-command "vagrant destroy"))
 
 ;;;###autoload
+(defun vagrant-destroy-force ()
+  "Destroy the vagrant box without promting for confirmation"
+  (interactive)
+  (vagrant-command "vagrant destroy --force"))
+
+;;;###autoload
 (defun vagrant-reload ()
   "Reload the vagrant box."
   (interactive)
