@@ -1,0 +1,5 @@
+* TODO allow user to configure what kind of buffer is used for vagrant interaction (particularly ssh)
+- plain shell
+- ansi-term
+- eshell?
+* TODO add tests
