@@ -3,3 +3,6 @@
 - ansi-term
 - eshell?
 * TODO add tests
+* TODO use same window
+right now these functions pop a window
+it's possible that the user wants to use only one window.
