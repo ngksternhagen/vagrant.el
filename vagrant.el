@@ -21,6 +21,12 @@
   :type 'string)
 
 ;;;###autoload
+(defun vagrant-kill-all-buffers ()
+  "Kill all Vagrant buffers."
+  (interactive)
+  (kill-matching-buffers "*Vagrant*"))
+
+;;;###autoload
 (defun vagrant-up ()
   "Bring up the vagrant box."
   (interactive)
