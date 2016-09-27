@@ -1,5 +1,4 @@
 # vagrant.el
-[![MELPA Stable](http://stable.melpa.org/packages/vagrant-badge.svg)](http://stable.melpa.org/#/vagrant)
 ## Synopsis
 
 Manage Vagrant boxes from Emacs.
@@ -14,12 +13,8 @@ emacs.
 
 ## Installation
 
-If you have a recent Emacs with `package.el`, you can install `vagrant`
-from [MELPA](http://melpa.milkbox.net/).
-
-Or via [el-get](http://tapoueh.org/emacs/el-get.html)
-
-Or manually add to your emacs `load-path`.
+This package is not currently available on any package repo. To install,
+manually add to your emacs `load-path`.
 
 ## Usage
 
