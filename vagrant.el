@@ -72,7 +72,7 @@
 (defun vagrant-global-status ()
   "Show the vagrant box status."
   (interactive)
-  (vagrant-command "vagrant status --global"))
+  (vagrant-command "vagrant global-status"))
 
 ;;;###autoload
 (defun vagrant-suspend ()
