@@ -126,7 +126,6 @@
                    (completing-read "Vagrant box: " (vagrant-box-list)))))
     (async-shell-command (if name (concat cmd " " name) cmd) "*Vagrant*")));
 
-
 (defun vagrant-box-list ()
   "List of vagrant box names."
   (let ((dir ".vagrant/machines/"))
