@@ -45,73 +45,73 @@
 (defun vagrant-up ()
   "Bring up the vagrant box."
   (interactive)
-  (vagrant-command (concat "vagrant up " vagrant-up-options)))
+  (vagrant-directory-local-command (concat "vagrant up " vagrant-up-options)))
 
 ;;;###autoload
 (defun vagrant-provision ()
   "Provision the vagrant box."
   (interactive)
-  (vagrant-command "vagrant provision"))
+  (vagrant-directory-local-command "vagrant provision"))
 
 ;;;###autoload
 (defun vagrant-destroy ()
   "Destroy the vagrant box."
   (interactive)
-  (vagrant-command "vagrant destroy"))
+  (vagrant-directory-local-command "vagrant destroy"))
 
 ;;;###autoload
 (defun vagrant-destroy-force ()
   "Destroy the vagrant box without promting for confirmation"
   (interactive)
-  (vagrant-command "vagrant destroy --force"))
+  (vagrant-directory-local-command "vagrant destroy --force"))
 
 ;;;###autoload
 (defun vagrant-reload ()
   "Reload the vagrant box."
   (interactive)
-  (vagrant-command "vagrant reload"))
+  (vagrant-directory-local-command "vagrant reload"))
 
 ;;;###autoload
 (defun vagrant-resume ()
   "Resume the vagrant box."
   (interactive)
-  (vagrant-command "vagrant resume"))
+  (vagrant-directory-local-command "vagrant resume"))
 
 ;;;###autoload
 (defun vagrant-ssh ()
   "SSH to the vagrant box."
   (interactive)
-  (vagrant-command "vagrant ssh"))
+  (vagrant-directory-local-command "vagrant ssh"))
 
 ;;;###autoload
 (defun vagrant-ssh-command (x)
   "pass a command to the vagrant box through ssh."
   (interactive "sCommand to run by ssh:")
-  (vagrant-command (format "vagrant ssh -c %s" x )));
+  (vagrant-directory-local-command (format "vagrant ssh -c %s" x )));
 
 ;;;###autoload
 (defun vagrant-status ()
   "Show the vagrant box status."
   (interactive)
-  (vagrant-command "vagrant status"))
+  (vagrant-directory-local-command "vagrant status"))
 ;;;###autoload
 
 (defun vagrant-global-status ()
   "Show the vagrant box status."
   (interactive)
-  (vagrant-command "vagrant status --global"))
+  (vagrant-directory-local-command "vagrant status --global"))
 
 ;;;###autoload
 (defun vagrant-suspend ()
   "Suspend the vagrant box."
   (interactive)
-  (vagrant-command "vagrant suspend"))
+  (vagrant-directory-local-command "vagrant suspend"))
 
 ;;;###autoload
 (defun vagrant-halt ()
   "Halt the vagrant box."
   (interactive)
-  (vagrant-command "vagrant halt"))
+  (vagrant-directory-local-command "vagrant halt"))
 
 ;;;###autoload
 (defun vagrant-edit ()
@@ -128,12 +128,18 @@
       (or vagrant-vagrantfile
           (error "No Vagrantfile found in %s or any parent directory" dir))))
 
-(defun vagrant-command (cmd)
+(defun vagrant-directory-local-command (cmd)
   "Run the vagrant command CMD in an async buffer."
   (let* ((default-directory (file-name-directory (vagrant-locate-vagrantfile)))
          (name (if current-prefix-arg
                    (completing-read "Vagrant box: " (vagrant-box-list)))))
     (async-shell-command (if name (concat cmd " " name) cmd) "*Vagrant*")))
+
+(defun global-vagrant-command (cmd)
+  "Run the vagrant command CMD in an async buffer, where CMD does not require a Vagrantfile in cwd."
+  (let* ((name (if current-prefix-arg
+                   (completing-read "Vagrant box: " (vagrant-box-list)))))
+    (async-shell-command (if name (concat cmd " " name) cmd) "*Vagrant*")));
 
 (defun vagrant-box-list ()
   "List of vagrant box names."
