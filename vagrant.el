@@ -42,6 +42,12 @@
   (kill-matching-buffers "*Vagrant*"))
 
 ;;;###autoload
+(defun vagrant-box-list ()
+  "Kill all Vagrant buffers."
+  (interactive)
+  (global-vagrant-command "vagrant box list"))
+
+;;;###autoload
 (defun vagrant-up ()
   "Bring up the vagrant box."
   (interactive)
@@ -137,9 +143,7 @@
 
 (defun global-vagrant-command (cmd)
   "Run the vagrant command CMD in an async buffer, where CMD does not require a Vagrantfile in cwd."
-  (let* ((name (if current-prefix-arg
-                   (completing-read "Vagrant box: " (vagrant--box-list)))))
-    (async-shell-command (if name (concat cmd " " name) cmd) "*Vagrant*")));
+    (async-shell-command cmd "*Vagrant*"))
 
 (defun vagrant--box-list ()
   "List of vagrant box names."
