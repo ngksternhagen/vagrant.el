@@ -1,4 +1,7 @@
+* TODO implement function to kill dormant buffers
+that is, vagrant buffers with no process running
 * TODO allow user to configure what kind of buffer is used for vagrant interaction (particularly ssh)
+
 - plain shell
 - ansi-term
 - eshell?
