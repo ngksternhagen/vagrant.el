@@ -27,7 +27,7 @@
   :group 'tools)
 
 (defcustom vagrant-up-options ""
-  "Options to run vagrant up command"
+  "Options to run vagrant up command."
   :group 'vagrant)
 
 (defcustom vagrant-project-directory "~/vagrant"
@@ -67,7 +67,7 @@
 
 ;;;###autoload
 (defun vagrant-destroy-force ()
-  "Destroy the vagrant box without promting for confirmation"
+  "Destroy the vagrant box without promting for confirmation."
   (interactive)
   (vagrant-directory-local-command "vagrant destroy --force"))
 
