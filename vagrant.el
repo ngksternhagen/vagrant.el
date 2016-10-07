@@ -125,6 +125,16 @@
   (interactive)
   (find-file (vagrant-locate-vagrantfile)))
 
+;;;###autoload
+(defun vagrant-kill-dormant-buffers ()
+  (interactive)
+  (dolist (x (buffer-list))
+    (if
+        (and
+         (vagrant--is-vagrant-buffer x)
+         (not (get-buffer-process x)))
+        (kill-buffer x))))
+
 (defvar-local vagrant-vagrantfile nil
   "Default path to Vagrantfile")
 
@@ -154,6 +164,12 @@
                          (file-directory-p (concat dir name))
                          name))
                   (directory-files dir)))))
+
+(defun vagrant--is-vagrant-buffer (x)
+  "returns t if the string '*Vagrant*' in buffer name"
+  ;; TODO needs unit test
+  (if (string-match "*Vagrant*" (buffer-name x))
+      t));
 
 (provide 'vagrant)
 
