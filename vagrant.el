@@ -43,7 +43,7 @@
 
 ;;;###autoload
 (defun vagrant-box-list ()
-  "Kill all Vagrant buffers."
+  "List Vagrant boxes."
   (interactive)
   (global-vagrant-command "vagrant box list"))
 
