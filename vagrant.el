@@ -120,6 +120,12 @@
   (vagrant-directory-local-command "vagrant halt"))
 
 ;;;###autoload
+(defun vagrant-init ()
+  "Initialize a Vagrant environment in cwd."
+  (interactive)
+  (global-vagrant-command "vagrant init"))
+
+;;;###autoload
 (defun vagrant-edit ()
   "Edit the Vagrantfile."
   (interactive)
