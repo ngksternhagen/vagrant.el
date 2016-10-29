@@ -12,3 +12,5 @@ it's possible that the user wants to use only one window.
 could do this by associating currently focused window with *Vagrant* buffer before executing shell command
 * TODO always use new buffer rather than prompting
 * TODO set environment variables such as VAGRANT_LOG
+* TODO add support for "hidden" commands
+https://www.vagrantup.com/docs/cli/non-primary.html
