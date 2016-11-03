@@ -120,6 +120,12 @@
   (vagrant-directory-local-command "vagrant halt"))
 
 ;;;###autoload
+(defun vagrant-rsync ()
+  "Sync folders with rsync as configured in Vagrantfile."
+  (interactive)
+  (vagrant-directory-local-command "vagrant rsync"))
+
+;;;###autoload
 (defun vagrant-init ()
   "Initialize a Vagrant environment in cwd."
   (interactive)
