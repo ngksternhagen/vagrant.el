@@ -48,6 +48,12 @@
   (global-vagrant-command "vagrant box list"))
 
 ;;;###autoload
+(defun vagrant-box-update ()
+  "Update the Vagrant box used in the directory-local Vagrant config."
+  (interactive)
+  (vagrant-directory-local-command "vagrant box update"))
+
+;;;###autoload
 (defun vagrant-up ()
   "Bring up the vagrant box."
   (interactive)
