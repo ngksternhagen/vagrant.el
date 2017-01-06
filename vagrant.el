@@ -45,97 +45,97 @@
 (defun vagrant-box-list ()
   "List Vagrant boxes."
   (interactive)
-  (global-vagrant-command "vagrant box list"))
+  (vagrant--global-command "vagrant box list"))
 
 ;;;###autoload
 (defun vagrant-box-update ()
   "Update the Vagrant box used in the directory-local Vagrant config."
   (interactive)
-  (vagrant-directory-local-command "vagrant box update"))
+  (vagrant--directory-local-command "vagrant box update"))
 
 ;;;###autoload
 (defun vagrant-up ()
   "Bring up the vagrant box."
   (interactive)
-  (vagrant-directory-local-command (concat "vagrant up " vagrant-up-options)))
+  (vagrant--directory-local-command (concat "vagrant up " vagrant-up-options)))
 
 ;;;###autoload
 (defun vagrant-provision ()
   "Provision the vagrant box."
   (interactive)
-  (vagrant-directory-local-command "vagrant provision"))
+  (vagrant--directory-local-command "vagrant provision"))
 
 ;;;###autoload
 (defun vagrant-destroy ()
   "Destroy the vagrant box."
   (interactive)
-  (vagrant-directory-local-command "vagrant destroy"))
+  (vagrant--directory-local-command "vagrant destroy"))
 
 ;;;###autoload
 (defun vagrant-destroy-force ()
   "Destroy the vagrant box without promting for confirmation."
   (interactive)
-  (vagrant-directory-local-command "vagrant destroy --force"))
+  (vagrant--directory-local-command "vagrant destroy --force"))
 
 ;;;###autoload
 (defun vagrant-reload ()
   "Reload the vagrant box."
   (interactive)
-  (vagrant-directory-local-command "vagrant reload"))
+  (vagrant--directory-local-command "vagrant reload"))
 
 ;;;###autoload
 (defun vagrant-resume ()
   "Resume the vagrant box."
   (interactive)
-  (vagrant-directory-local-command "vagrant resume"))
+  (vagrant--directory-local-command "vagrant resume"))
 
 ;;;###autoload
 (defun vagrant-ssh ()
   "SSH to the vagrant box."
   (interactive)
-  (vagrant-directory-local-command "vagrant ssh"))
+  (vagrant--directory-local-command "vagrant ssh"))
 
 ;;;###autoload
 (defun vagrant-ssh-command (x)
   "pass a command to the vagrant box through ssh."
   (interactive "sCommand to run by ssh:")
-  (vagrant-directory-local-command (format "vagrant ssh -c %s" x )));
+  (vagrant--directory-local-command (format "vagrant ssh -c %s" x )));
 
 ;;;###autoload
 (defun vagrant-status ()
   "Show the vagrant box status."
   (interactive)
-  (vagrant-directory-local-command "vagrant status"))
+  (vagrant--directory-local-command "vagrant status"))
 ;;;###autoload
 
 (defun vagrant-global-status ()
   "Show the vagrant box status."
   (interactive)
-  (global-vagrant-command "vagrant global-status"))
+  (vagrant--global-command "vagrant global-status"))
 
 ;;;###autoload
 (defun vagrant-suspend ()
   "Suspend the vagrant box."
   (interactive)
-  (vagrant-directory-local-command "vagrant suspend"))
+  (vagrant--directory-local-command "vagrant suspend"))
 
 ;;;###autoload
 (defun vagrant-halt ()
   "Halt the vagrant box."
   (interactive)
-  (vagrant-directory-local-command "vagrant halt"))
+  (vagrant--directory-local-command "vagrant halt"))
 
 ;;;###autoload
 (defun vagrant-rsync ()
   "Sync folders with rsync as configured in Vagrantfile."
   (interactive)
-  (vagrant-directory-local-command "vagrant rsync"))
+  (vagrant--directory-local-command "vagrant rsync"))
 
 ;;;###autoload
 (defun vagrant-init ()
   "Initialize a Vagrant environment in cwd."
   (interactive)
-  (global-vagrant-command "vagrant init"))
+  (vagrant--global-command "vagrant init"))
 
 ;;;###autoload
 (defun vagrant-edit ()
@@ -162,14 +162,14 @@
       (or vagrant-vagrantfile
           (error "No Vagrantfile found in %s or any parent directory" dir))))
 
-(defun vagrant-directory-local-command (cmd)
+(defun vagrant--directory-local-command (cmd)
   "Run the vagrant command CMD in an async buffer."
   (let* ((default-directory (file-name-directory (vagrant-locate-vagrantfile)))
          (name (if current-prefix-arg
                    (completing-read "Vagrant box: " (vagrant--box-list)))))
     (async-shell-command (if name (concat cmd " " name) cmd) "*Vagrant*")))
 
-(defun global-vagrant-command (cmd)
+(defun vagrant--global-command (cmd)
   "Run the vagrant command CMD in an async buffer, where CMD does not require a Vagrantfile in cwd."
     (async-shell-command cmd "*Vagrant*"))
 
