@@ -153,6 +153,36 @@
          (not (get-buffer-process x)))
         (kill-buffer x))))
 
+(defun vagrant-snapshot-push ()
+  "Push a snapshot."
+  (interactive)
+  (vagrant--directory-local-command "vagrant snapshot push"))
+
+(defun vagrant-snapshot-pop ()
+  "Pop a snapshot."
+  (interactive)
+  (vagrant--directory-local-command "vagrant snapshot pop"))
+
+(defun vagrant-snapshot-save ()
+  "Save a snapshot."
+  (interactive)
+  (vagrant--directory-local-command "vagrant snapshot save"))
+
+(defun vagrant-snapshot-restore ()
+  "Restore a snapshot."
+  (interactive)
+  (vagrant--directory-local-command "vagrant snapshot restore"))
+
+(defun vagrant-snapshot-list ()
+  "List snapshots."
+  (interactive)
+  (vagrant--directory-local-command "vagrant snapshot list")))
+
+(defun vagrant-snapshot-delete ()
+  "Delete a snapshot."
+  (interactive)
+  (vagrant--directory-local-command "vagrant snapshot delete"))
+
 (defvar-local vagrant-vagrantfile nil
   "Default path to Vagrantfile")
 
